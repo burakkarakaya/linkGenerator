@@ -2,7 +2,13 @@
 var config = {
 	
 	'text': {
-		
+		'template': '<div class="content"><h2 class="title">{{title}}</h2><p class="desc">{{desc}}</p></div>',
+		'settings': {
+			'title':{ 'title': 'TARGET URL', 'slug': '{{title}}', 'defaultValue': 'title' },
+			'desc':{ 'title': 'BUTTON CLASS', 'slug': '{{desc}}', 'defaultValue': 'description' }
+		},
+		'resizable': false,
+		'type': 'textButton'
 	},
 	
 	'link': {

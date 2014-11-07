@@ -9,6 +9,7 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			settings = obj["settings"] || {}
 			resizable = obj["resizable"] || false,
 			type = obj["type"] || 'button',
+			output = '',
 			ID = DefaultValue(); 
 			
 			
@@ -35,20 +36,43 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 				$( this ).parents('span.settings').toggleClass('opened');
 			});
 			$('ul.settingList input', ID).bind('keyup', function(){
-				var theme = template;
-				$('ul.settingList input', ID).each(function(i, k) {
+				var theme = template,
+					con = $( this ).parents('.box');
+				
+				$('ul.settingList input', con).each(function(i, k) {
                     var _this = $( this ), rel = _this.attr('rel'), val = _this.val();
+					
+					/* DEFAULT DEĞERLERİNE DÖNDÜRME
+					if( val.length == 0 ){
+						val = getDefaultValue( rel );
+						_this.val( val );
+					}
+					*/
+					
 					theme = theme.replace( rel, val );	
 				});
-				$('span.theme', ID).html( theme );
+				$('span.theme', con).html( theme );
+				output = theme;
 			});	
 		}
 		
 		function DefaultValue(){
 			var theme = template;
 			for( var i in settings )
-				theme = theme.replace( settings[i]['slug'], settings[i]['defaultValue'] );	
+				theme = theme.replace( settings[i]['slug'], settings[i]['defaultValue'] );
+			
+			output = theme;		
+			
 			return $( '<div class="box"><a href="javascript:void(0);" class="removeBtn">Remove<i></i></a><span class="theme">' + theme + '</span><span class="settings"><a href="javascript:void(0);" class="settingsBtn">Settings<i></i></a></span></div>' );	
+		}
+		
+		function getDefaultValue( rel ){
+			var def = '';
+			for( var i in settings ){
+				var s = settings[ i ];
+				if( s['slug'] == rel ) def = s['defaultValue'];
+			}
+			return def;
 		}
 		
 		function createSettings(){
@@ -65,6 +89,10 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			if( callback != undefined ) callback();
 		}
 		
+		//GLOBAL VARIABLE
+		this.getOutput = function(){
+			return 
+		}
 	};
 	window.AppUI = AppUI;
 })(window);
