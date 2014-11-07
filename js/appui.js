@@ -33,7 +33,7 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			
 			$('a.removeBtn', ID).bind('click', function(){
 				var con = $( this ).parents('.box');
-				if( resizable ) con.resizable('destroy')
+				//if( resizable ) con.resizable('destroy')
 				con.draggable('destroy').remove();
 			});
 			$('a.settingsBtn', ID).bind('click', function(){
