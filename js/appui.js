@@ -26,11 +26,15 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			});
 
 			if( resizable ){
-				// resizable active
+				ID.addClass('resizable').resizable({ containment:'parent' }).on('dragstop', function( event, ui ){
+					console.log('sdsadsd');
+				});
 			}
 			
 			$('a.removeBtn', ID).bind('click', function(){
-				$( this ).parents('.box').draggable('destroy').remove();
+				var con = $( this ).parents('.box');
+				if( resizable ) con.resizable('destroy')
+				con.draggable('destroy').remove();
 			});
 			$('a.settingsBtn', ID).bind('click', function(){
 				$( this ).parents('span.settings').toggleClass('opened');
