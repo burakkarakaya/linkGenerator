@@ -16,8 +16,7 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			resizable = obj["resizable"] || false,
 			type = obj["type"] || 'button',
 			output = '',
-			ID = DefaultValue(),
-			objPos = {};
+			ID = DefaultValue();
 
 		if( ID != undefined ){ 
 			
@@ -27,48 +26,42 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			
 			//EVENT
 			ID.draggable({ containment:'parent'	}).on('dragstop', function( event, ui ){
-				objPos['{{left}}'] = ui.position.left;
-     			objPos['{{top}}'] = ui.position.top;
+				
+				ui = ui || { 'position': { 'left': ID.offset().left, 'top': ID.offset().top } };
+				$('ul.settingList li.top input', ID).val( ui.position.left );
+				$('ul.settingList li.left input', ID).val( ui.position.top );
 				generateOutput();
-			});
-
+				
+			}).trigger('dragstop');
+	
 			if( resizable ){
 				ID.addClass('resizable').resizable({ containment:'parent' }).on('resizestop', function( event, ui ){
-					objPos['{{width}}'] = ui.size.width;
-	     			objPos['{{height}}'] = ui.size.height;
+					
+					ui = ui || { 'size': { 'width': ID.width(), 'height': ID.height() } };
+					$('ul.settingList li.width input', ID).val( ui.size.width );
+					$('ul.settingList li.height input', ID).val( ui.size.height );
 					generateOutput();
-				});
+					
+				}).trigger('resizestop');
 			}
 	
 			$('a.removeBtn', ID).unbind('click').bind('click', function(){
-				var con = $( this ).parents('.box');
-				if( con.hasClass('resizable') ) 
-					con.resizable('destroy');
-					con.draggable('destroy').remove();
-				
+				if( ID.hasClass('resizable') ) 
+					ID.resizable('destroy');
+					ID.draggable('destroy').remove();
 				deleteOutputObj( objID ); //delete obj	
 			});
 			$('a.settingsBtn', ID).bind('click', function(){
+				$('span.settings').removeClass('opened');
 				$( this ).parents('span.settings').toggleClass('opened');
 			});
-			$('ul.settingList input', ID).bind('keyup', function(){
-				var theme = template,
-					con = $( this ).parents('.box');
-				
-				$('ul.settingList input', con).each(function(i, k) {
-                    var _this = $( this ), rel = _this.attr('rel'), val = _this.val();
-					
-					// DEFAULT DEĞERLERİNE DÖNDÜRME
-					// if( val.length == 0 ){
-						// val = getDefaultValue( rel );
-						// _this.val( val );
-					// }
-					
-					
-					theme = theme.replace( rel, val );	
-				});
-				$('span.theme', con).html( theme );
-				output = theme;
+			$('ul.settingList input', ID).bind('keyup', function(){			
+				/* DEFAULT DEĞERLERİNE DÖNDÜRME
+				if( val.length == 0 ){
+					val = getDefaultValue( rel );
+					_this.val( val );
+				}*/
+				generateOutput();
 			});	
 		}
 		
@@ -76,11 +69,8 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			var theme = template;
 			for( var i in settings )
 				theme = theme.replace( settings[i]['slug'], settings[i]['defaultValue'] );
-			
 			output = theme;		
-			
 			return $( '<div class="box '+ type +'"><a href="javascript:void(0);" class="removeBtn">Remove<i></i></a><span class="theme">' + theme + '</span><span class="settings"><a href="javascript:void(0);" class="settingsBtn">Settings<i></i></a></span></div>' );	
-			
 		}
 		
 		function getDefaultValue( rel ){
@@ -96,21 +86,24 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			var theme = '<ul class="settingList">';
 				for( var i in settings ){
 					var s = settings[ i ];
-					theme += '<li><span>'+ s['title'] +'</span><input type="text" class="'+ i +'" value="'+ s['defaultValue'] +'" rel="'+ s['slug'] +'" /></li>';
+					theme += '<li class="'+ i +'"><span>'+ s['title'] +'</span><input type="text" value="'+ s['defaultValue'] +'" rel="'+ s['slug'] +'" /></li>';
 				}
 				theme += '</ul>';
 			return theme;	
 		}
 		
 		function generateOutput(){
-			var theme = template;
 			
-			// Position & Size
-			for( var i in objPos ){
-				theme = theme.replace( i, objPos[ i ] );
-			}
+			var theme = template;			
+			$('ul.settingList input', ID).each(function(i, k) {
+				var _this = $( this ), rel = _this.attr('rel'), val = _this.val();			
+				if( rel != undefined && rel != null && rel != '' )
+					theme = theme.replace( rel, val );	
+			});
+			$('span.theme', ID).html( theme );
+			output = theme;
 			
-			console.log( template, ID[0] );
+			setTimeout( generateHtml, 1 );
 		}
 		
 		function output(){
@@ -156,8 +149,14 @@ function generateHtml(){
 	outputArea.val( html );
 }
 
-
 //FILE UPLOAD
 $('.fileUpload').bind('change', function(){
 	console.log( $( this ).val() );
 });
+
+// DIV OUTSIDE DETECT
+$("body, html").click(function(e) {
+	if( e.target.className != "settings" && $( e.target ).parents("span.settings").size() != 1 )
+		$('span.settings').removeClass('opened');	
+});
+

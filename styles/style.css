@@ -16,9 +16,12 @@ table{border-collapse:collapse;border-spacing:0}
 
 /* APPWIZARD */
 #appWizard .scene{ background:#ccc; width:500px; height:500px; }
-#appWizard .scene .box{ position:absolute; left:0; top:0; }
+#appWizard .scene .box{ position:absolute; left:25px; top:25px; }
+#appWizard .scene .box.textArea{ width:150px; height:100px; }
 #appWizard .scene .box a.removeBtn{ position:absolute; left:-10px; top:-25px; text-indent:-9999px; background:url(../frontend/erase.png); width:20px; height:20px; display:block; }
 #appWizard .scene .box span.settings{ position:absolute; top:-25px; }
 #appWizard .scene .box span.settings a.settingsBtn{ text-indent:-9999px; background:url(../frontend/settings.png); width:20px; height:20px; display:block; }
 #appWizard .scene .box span.settings ul.settingList{ display:none; }
 #appWizard .scene .box span.settings.opened ul.settingList{ display:block; }
+#appWizard .scene .box span.settings.opened ul.settingList li.width, #appWizard .scene .box span.settings.opened ul.settingList li.height, #appWizard .scene .box span.settings.opened ul.settingList li.top, #appWizard .scene .box span.settings.opened ul.settingList li.left{ display:none; } 
+#appWizard .output textarea{ width:500px; height:125px; }
