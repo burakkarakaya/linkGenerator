@@ -6,10 +6,10 @@ var config = {
 		'settings': {
 			'title':{ 'title': 'TITLE', 'slug': '{{title}}', 'defaultValue': 'title' },
 			'desc':{ 'title': 'DESCRIPTION', 'slug': '{{desc}}', 'defaultValue': 'description' },
-			'width':{ 'title': 'WIDTH', 'slug': '{{width}}', 'defaultValue': '' },
-			'height':{ 'title': 'HEIGHT', 'slug': '{{height}}', 'defaultValue': '' },
-			'top':{ 'title': 'TOP', 'slug': '{{top}}', 'defaultValue': '' },
-			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': '' }
+			'width':{ 'title': 'WIDTH', 'slug': '{{width}}', 'defaultValue': 0 },
+			'height':{ 'title': 'HEIGHT', 'slug': '{{height}}', 'defaultValue': 0 },
+			'top':{ 'title': 'TOP', 'slug': '{{top}}', 'defaultValue': 0 },
+			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': 0 }
 		},
 		'resizable': true,
 		'type': 'textButton'
@@ -21,8 +21,8 @@ var config = {
 			'link':{ 'title': 'TARGET URL', 'slug': '{{link}}', 'defaultValue': '#' },
 			'class':{ 'title': 'BUTTON CLASS', 'slug': '{{class}}', 'defaultValue': '' },
 			'buttonText':{ 'title': 'BUTTON TEXT', 'slug': '{{buttonText}}', 'defaultValue': 'BUTTON' },
-			'top':{ 'title': 'TOP', 'slug': '{{top}}', 'defaultValue': '' },
-			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': '' }
+			'top':{ 'title': 'TOP', 'slug': '{{top}}', 'defaultValue': 0 },
+			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': 0 }
 		},
 		'resizable': false,
 		'type': 'linkButton'

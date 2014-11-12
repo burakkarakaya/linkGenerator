@@ -12,13 +12,13 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 	function AppUI( obj, objID, callback ){
 
 		var template = obj["template"] || '',
-			settings = obj["settings"] || {}
+			settings = obj["settings"] || {},
 			resizable = obj["resizable"] || false,
 			type = obj["type"] || 'button',
 			output = '',
 			ID = DefaultValue(),
-			objPos = {}; 
-			
+			objPos = {};
+
 		if( ID != undefined ){ 
 			
 			//APPEND
@@ -33,13 +33,13 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			});
 
 			if( resizable ){
-				ID.addClass('resizable').resizable({ containment:'parent' }).on('dragstop', function( event, ui ){
+				ID.addClass('resizable').resizable({ containment:'parent' }).on('resizestop', function( event, ui ){
 					objPos['{{width}}'] = ui.size.width;
 	     			objPos['{{height}}'] = ui.size.height;
 					generateOutput();
 				});
 			}
-			
+	
 			$('a.removeBtn', ID).unbind('click').bind('click', function(){
 				var con = $( this ).parents('.box');
 				if( con.hasClass('resizable') ) 
@@ -58,12 +58,12 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 				$('ul.settingList input', con).each(function(i, k) {
                     var _this = $( this ), rel = _this.attr('rel'), val = _this.val();
 					
-					/* DEFAULT DEĞERLERİNE DÖNDÜRME
-					if( val.length == 0 ){
-						val = getDefaultValue( rel );
-						_this.val( val );
-					}
-					*/
+					// DEFAULT DEĞERLERİNE DÖNDÜRME
+					// if( val.length == 0 ){
+						// val = getDefaultValue( rel );
+						// _this.val( val );
+					// }
+					
 					
 					theme = theme.replace( rel, val );	
 				});
@@ -79,7 +79,8 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			
 			output = theme;		
 			
-			return $( '<div class="box"><a href="javascript:void(0);" class="removeBtn">Remove<i></i></a><span class="theme">' + theme + '</span><span class="settings"><a href="javascript:void(0);" class="settingsBtn">Settings<i></i></a></span></div>' );	
+			return $( '<div class="box '+ type +'"><a href="javascript:void(0);" class="removeBtn">Remove<i></i></a><span class="theme">' + theme + '</span><span class="settings"><a href="javascript:void(0);" class="settingsBtn">Settings<i></i></a></span></div>' );	
+			
 		}
 		
 		function getDefaultValue( rel ){
@@ -109,7 +110,7 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 				theme = theme.replace( i, objPos[ i ] );
 			}
 			
-			console.log( theme );
+			console.log( template, ID[0] );
 		}
 		
 		function output(){
@@ -128,7 +129,8 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 menu.bind('click', function(){
 	var _this = $( this ), rel = _this.attr('rel');
 	if( rel != undefined && rel != null && rel != '' ){
-		createConfig( config[ rel ] );
+		if( config[ rel ]['template'] )
+			createConfig( config[ rel ] );
 	}
 });
 
