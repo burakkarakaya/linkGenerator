@@ -15,8 +15,9 @@ table{border-collapse:collapse;border-spacing:0}
 .hidden {display:none;}
 
 /* APPWIZARD */
-#appWizard .scene{ background:#ccc; width:500px; height:500px; }
+#appWizard .scene{ background:#ccc; width:1000px; height:500px; }
 #appWizard .scene .box{ position:absolute; left:25px; top:25px; }
+#appWizard .scene .box.hitArea{ background:#39C;-moz-opacity:.50;filter:alpha(opacity=50);opacity:.50; width:100px; height:50px; }
 #appWizard .scene .box.textArea{ width:150px; height:100px; }
 #appWizard .scene .box a.removeBtn{ position:absolute; left:-10px; top:-25px; text-indent:-9999px; background:url(../frontend/erase.png); width:20px; height:20px; display:block; }
 #appWizard .scene .box span.settings{ position:absolute; top:-25px; }

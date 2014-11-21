@@ -5,7 +5,7 @@
 e[19==a?b&3|8:b]);return d.join("")};Math.uuidCompact=function(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(d){var c=16*Math.random()|0;return("x"==d?c:c&3|8).toString(16)})}})();
 
 // Global Variable
-var con = $('#appWizard'), scene = $('.scene', con), background = $('.background', scene), menu = $('ul.settings li a', con), outputArea = $('.output', con), outputObj = {}; 
+var con = $('#appWizard'), scene = $('.scene', con), sceneW = scene.width(), sceneH = scene.height(), background = $('.background', scene), menu = $('ul.settings li a', con), outputArea = $('.output', con), outputObj = {}; 
 
 // Draggable, Resizable
 (function(window){
@@ -25,24 +25,10 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 			$('span.settings', ID).append( createSettings() );
 			
 			//EVENT
-			ID.draggable({ containment:'parent'	}).on('dragstop', function( event, ui ){
-				
-				ui = ui || { 'position': { 'left': ID.offset().left, 'top': ID.offset().top } };
-				$('ul.settingList li.top input', ID).val( ui.position.left );
-				$('ul.settingList li.left input', ID).val( ui.position.top );
-				generateOutput();
-				
-			}).trigger('dragstop');
+			ID.draggable({ containment:'parent'	}).on('dragstop', onDragStop).trigger('dragstop');
 	
 			if( resizable ){
-				ID.addClass('resizable').resizable({ containment:'parent' }).on('resizestop', function( event, ui ){
-					
-					ui = ui || { 'size': { 'width': ID.width(), 'height': ID.height() } };
-					$('ul.settingList li.width input', ID).val( ui.size.width );
-					$('ul.settingList li.height input', ID).val( ui.size.height );
-					generateOutput();
-					
-				}).trigger('resizestop');
+				ID.addClass('resizable').resizable({ containment:'parent' }).on('resizestop', onResizeStop).trigger('resizestop');
 			}
 	
 			$('a.removeBtn', ID).unbind('click').bind('click', function(){
@@ -64,6 +50,26 @@ var con = $('#appWizard'), scene = $('.scene', con), background = $('.background
 				generateOutput();
 			});	
 		}
+		
+		function onDragStop( event, ui ){
+			ui = ui || { 'position': { 'left': ID.offset().left, 'top': ID.offset().top } };
+			var x = ui.position.left, y = ui.position.top;
+				x = Math.round( x / sceneW * 100 );
+				y = Math.round( y / sceneH * 100 );
+			$('ul.settingList li.top input', ID).val( y );
+			$('ul.settingList li.left input', ID).val( x );
+			generateOutput();
+		}
+		
+		function onResizeStop( event, ui ){
+			ui = ui || { 'size': { 'width': ID.width(), 'height': ID.height() } };
+			var w = ui.size.width, h = ui.size.height;
+				w = Math.round( w / sceneW * 100 );
+				h = Math.round( h / sceneH * 100 );
+			$('ul.settingList li.width input', ID).val( w );
+			$('ul.settingList li.height input', ID).val( h );
+			generateOutput();
+		}		
 		
 		function DefaultValue(){
 			var theme = template;
@@ -149,14 +155,32 @@ function generateHtml(){
 	outputArea.val( html );
 }
 
-//FILE UPLOAD
-$('.fileUpload').bind('change', function(){
-	console.log( $( this ).val() );
-});
-
 // DIV OUTSIDE DETECT
 $("body, html").click(function(e) {
 	if( e.target.className != "settings" && $( e.target ).parents("span.settings").size() != 1 )
 		$('span.settings').removeClass('opened');	
 });
+
+//FILE UPLOAD
+$('.fileUpload').bind('change', function(){
+	var src = 'upload/' + getFileNameFromPath( $( this ).val() );
+		getImageSize(src, function( obj ){
+			sceneW = obj['width'];
+			sceneH = obj['height'];
+			scene.removeAttr('style').width( sceneW ).height( sceneH );
+		});
+		background.html('<img src="'+ src +'" />');
+});
+
+function getFileNameFromPath( path ){ var ary = path.split("\\"); return ary[ary.length - 1]; }
+
+function getImageSize( src, success, err ){
+	var img = new Image();
+		img.onload = function(){
+			if( success != undefined ) 
+				success( { 'width': this.width, 'height': this.height } );
+		}
+		img.onerror = function(){ if( err != undefined ) err(); }
+		img.src = src;
+}
 
