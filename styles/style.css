@@ -1,11 +1,35 @@
 /* RESET */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline; font-family: verdana; color:#333;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
 body{line-height:1}
 ol,ul{list-style:none}
 blockquote,q{quotes:none}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
 table{border-collapse:collapse;border-spacing:0}
+
+* {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	line-height:1;
+	margin:0;
+	padding:0;
+	border:none;
+	outline:none;
+	vertical-align:baseline;
+	text-decoration:none;
+	list-style:none
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+a, a span {-webkit-transition: all .25s ease-out; -moz-transition: all .25s ease-out; -o-transition: all .25s ease-out; transition: all .25s ease-out;}
+a:hover span {color:#999;}
 
 /* GLOBAL */
 *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;outline:0;vertical-align:baseline;text-decoration:none;list-style:none}
@@ -15,14 +39,196 @@ table{border-collapse:collapse;border-spacing:0}
 .hidden {display:none;}
 
 /* APPWIZARD */
-#appWizard .scene{ background:#ccc; width:1000px; height:500px; }
+#appWizard .topCol {width:100%; padding:50px 0; text-align:center;}
+#appWizard .topCol .header {margin-bottom:40px;}
+#appWizard .topCol .header h5 {display:inline-block; font-size:25px; font-weight:bold;}
+#appWizard .topCol .header small {color:#ccc; font-size:10px; margin-left:10px; vertical-align: text-top;}
+
+#appWizard .bottomCol {width:100%; padding:50px 0; background:#ddd; border-bottom:1px solid #ccc;}
+#appWizard .bottomCol h2  {font-size:15px; font-weight:bold; display:block; margin-bottom:20px;}
+#appWizard .bottomCol a {
+	background-color:#3bb3e0;
+	font-family: 'Open Sans', sans-serif;
+	font-size:12px;
+	text-decoration:none;
+	color:#fff;
+	position:relative;
+	padding:10px 20px;
+	border-left:solid 1px #2ab7ec;
+	display:inline-block;
+	margin-left:35px;
+	background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(44,160,202)),
+	color-stop(1, rgb(62,184,229))
+	);
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	-webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+}
+
+#appWizard .bottomCol a:active {
+	top:3px;
+	background-image: linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(62,184,229)),
+	color-stop(1, rgb(44,160,202))
+	);
+	-webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+	box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #156785, 0px 5px 3px #999;
+}
+
+#appWizard .bottomCol a::before {
+	background-color:#2561b4;
+	content: "";
+	width:35px;
+	height:100%;
+	position:absolute;
+	display:block;
+	text-align:center;
+	padding-top:10px;
+	top:0px;
+	left:-36px;
+	font-size:15px;
+	font-weight:bold;
+	color:#8fd1ea;
+	text-shadow:1px 1px 0px #07526e;
+	border-right:solid 1px #07526e;
+	background-image: linear-gradient(bottom, rgb(10,94,125) 0%, rgb(14,139,184) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(10,94,125) 0%, rgb(14,139,184) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(10,94,125) 0%, rgb(14,139,184) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(10,94,125) 0%, rgb(14,139,184) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(10,94,125) 0%, rgb(14,139,184) 100%);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(10,94,125)),
+	color-stop(1, rgb(14,139,184))
+	);
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+	-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+	-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+	box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 0px 10px 5px #999 ;
+}
+
+#appWizard .bottomCol a:active::before {
+	top:-3px;
+	-webkit-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+	-moz-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+	-o-box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+	box-shadow:inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #032b3a, 1px 1px 0px 0px #044a64, 2px 2px 0px 0px #044a64, 2px 5px 0px 0px #044a64, 6px 4px 2px #0b698b, 0px 10px 5px #999 ;
+}
+
+#appWizard .bottomCol input[type="file"].fileUpload  {
+	background-color: #3be04d;
+	font-family: 'Open Sans', sans-serif;
+	font-size:12px;
+	text-decoration:none;
+	color:#fff;
+	position:relative;
+	padding:7px 20px;
+	border-left: solid 1px #2aec51;
+	display:inline-block;
+	background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(44, 202, 50) 0%, rgb(62, 229, 83) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+	background-image: -webkit-gradient(   linear,   left bottom,   left top,   color-stop(0, rgb(44, 202, 48)),   color-stop(1, rgb(62, 229, 104))   );
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-box-shadow: inset 0px 1px 0px #2aec35, 0px 5px 0px 0px #158529, 0px 10px 5px #999;
+	-moz-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	-o-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+	box-shadow: inset 0px 1px 0px #2aec37, 0px 5px 0px 0px #168515, 0px 10px 5px #999;
+}
+
+#appWizard .bottomCol .fileUpload {margin-bottom:20px;}
+#appWizard .bottomCol a.textButton::before {content: "\f0f6";}
+#appWizard .bottomCol a.linkButton::before {content: "\f0c1";}
+#appWizard .bottomCol a.hitAreaButton::before {content: "\f192";}
+#appWizard .bottomCol a.generateBtn::before {content: "\f00c";}
+
+
+#appWizard .bottomCol a span {color:#fff;}
+
+#appWizard .scene{position:relative; background:#ccc; width:1000px; height:500px; margin:0 auto; }
 #appWizard .scene .box{ position:absolute; left:25px; top:25px; }
-#appWizard .scene .box.hitArea{ background:#39C;-moz-opacity:.50;filter:alpha(opacity=50);opacity:.50; width:100px; height:50px; }
+#appWizard .scene .box .theme {margin-top:10px; display:block;}
+#appWizard .scene .box.linkButton .theme a {width:100%; padding:5px; background:#666; border-radius:3px;}
+#appWizard .scene .box.linkButton .theme a span {color:#fff;}
+#appWizard .scene .box.hitArea{ background:rgba(51,153,204,0.7);/*-moz-opacity:.50;filter:alpha(opacity=50);opacity:.50;*/ width:100px; height:50px; }
 #appWizard .scene .box.textArea{ width:150px; height:100px; }
-#appWizard .scene .box a.removeBtn{ position:absolute; left:-10px; top:-25px; text-indent:-9999px; background:url(../frontend/erase.png); width:20px; height:20px; display:block; }
-#appWizard .scene .box span.settings{ position:absolute; top:-25px; }
-#appWizard .scene .box span.settings a.settingsBtn{ text-indent:-9999px; background:url(../frontend/settings.png); width:20px; height:20px; display:block; }
+#appWizard .scene .box.textArea .content {text-align:left;}
+#appWizard .scene .box.textArea .theme {background:rgba(255,255,255,0.5); padding:20px; border-radius:3px;}
+#appWizard .scene .box a.removeBtn{ position:absolute; right:5px; top:-25px; text-indent:-9999px; width:20px; height:20px; display:block; z-index:1;}
+#appWizard .scene .box a.removeBtn i:before {content: '\f00d'; position: relative; display: block; text-indent: 0; font-size: 20px; position: absolute; top: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);}
+#appWizard .scene .box span.settings{ position:absolute; top:-25px; left:5px; z-index:1;}
+#appWizard .scene .box span.settings a.settingsBtn{ text-indent:-9999px; width:20px; height:20px; display:block; }
+#appWizard .scene .box span.settings a.settingsBtn i:before {content: "\f013"; position: relative; display: block; text-indent: 0; font-size: 20px; position: absolute; top: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);}
 #appWizard .scene .box span.settings ul.settingList{ display:none; }
-#appWizard .scene .box span.settings.opened ul.settingList{ display:block; }
+#appWizard .scene .box span.settings.opened ul.settingList{display:block;width: 300px;position: fixed; top:25%; right: 0; left:0; margin:0 auto; padding:10px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;-webkit-box-shadow: 0px 2px 3px rgba(0,0,0,0.1);box-shadow: 0px 2px 3px rgba(0,0,0,0.1);/* max-width: 200px; */margin: 0 auto;background: #fff;z-index: 999;}
 #appWizard .scene .box span.settings.opened ul.settingList li.width, #appWizard .scene .box span.settings.opened ul.settingList li.height, #appWizard .scene .box span.settings.opened ul.settingList li.top, #appWizard .scene .box span.settings.opened ul.settingList li.left{ display:none; } 
-#appWizard .output textarea{ width:500px; height:125px; }
+#appWizard .output textarea{height:125px; border:0; resize:none; margin:0;}
+#appWizard .scene .box span.settings.opened ul.settingList input {width:100%;padding: 12px;border-radius: 2px;box-shadow: inset 0px 0px 6px rgba(0,0,0,0.56);}
+#appWizard .scene .box span.settings.opened ul.settingList span {font-weight:bold; margin: 10px 0; display: block; font-size: 12px;}
+
+#appWizard .scene .box span.dragBox {width: 100%;height: 25px;background: #fff;position: absolute;top: -27px;padding: 5px;display: block;border-radius: 10px;}
+
+#appWizard .properties, #appWizard .output {width:100%; max-width:1000px; padding:0 20px; margin:0 auto;}
+#appWizard .output {margin-top:20px; padding-top:40px; border-top:1px dashed #aaa;}
+#appWizard .output .generateBtn {margin-top:20px;}
+#appWizard .output textarea {padding:20px;}
+#appWizard .properties .settings li {float:left;padding-right:10px; margin-bottom:20px;}
+#appWizard .properties .column.left {width:50%; float:left;}
+#appWizard .properties .column.right {width:50%; float:right;}
+
+#appWizard .footer {width:100%; max-width:1000px; padding:30px 0; margin:0 auto;}
+#appWizard .footer span {color:#999; font-size:14px;}
+
+@media only screen and (max-width:500px) {
+
+#appWizard .properties .column.right, #appWizard .properties .column.left {width:100%;}
+
+
+} 
