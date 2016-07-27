@@ -25,7 +25,8 @@ var config = {
 			'link':{ 'title': 'TARGET URL', 'slug': '{{link}}', 'defaultValue': 'javascript:void(0);' },
 			'buttonText':{ 'title': 'BUTTON TEXT', 'slug': '{{buttonText}}', 'defaultValue': 'KEŞFET' },
 			'top':{ 'title': 'TOP', 'slug': '{{top}}', 'defaultValue': 0 },
-			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': 0 }
+			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': 0 },
+			'src': { 'title': 'RESIM YOLU', 'slug': '{{src}}', 'defaultValue': '' }
 		},
 		'resizable': false,
 		'type': 'pinButton'
