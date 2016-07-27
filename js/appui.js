@@ -37,12 +37,6 @@ var con = $('#appWizard'), scene = $('.scene', con), sceneW = scene.width(), sce
 					ID.draggable('destroy').remove();
 				deleteOutputObj( objID ); //delete obj	
 			});
-			$('a.drgBtn', ID).unbind('click').bind('click', function(){
-				if( ID.hasClass('resizable') ) 
-					ID.resizable('destroy');
-					ID.draggable('destroy').remove();
-				deleteOutputObj( objID ); //delete obj	
-			});
 			$('a.settingsBtn', ID).bind('click', function(){
 				$('span.settings').removeClass('opened');
 				$( this ).parents('span.settings').toggleClass('opened');
@@ -82,7 +76,7 @@ var con = $('#appWizard'), scene = $('.scene', con), sceneW = scene.width(), sce
 			for( var i in settings )
 				theme = theme.replace( settings[i]['slug'], settings[i]['defaultValue'] );
 			output = theme;		
-			return $( '<div class="box '+ type +'"><a href="javascript:void(0);" class="removeBtn">Remove<i></i></a><span class="theme">' + theme + '</span><span class="settings"><a href="javascript:void(0);" class="settingsBtn">Settings<i></i></a></span> <span class="dragBox"><a href="javascript:void(0);" class="drgBtn"></a></span></div>' );	
+			return $( '<div class="box '+ type +'"><div class="controls"><span class="settings"><a href="javascript:void(0);" class="settingsBtn">Settings<i></i></a></span><a href="javascript:void(0);" class="removeBtn">Remove<i></i></a></div><span class="theme">' + theme + '</span></div>' );	
 		}
 		
 		function getDefaultValue( rel ){
@@ -190,3 +184,4 @@ function getImageSize( src, success, err ){
 		img.src = src;
 }
 
+//$('<style type="text/css">@import url("http://sass.proj-e.com/sites/arcelik/style.css")</style>').appendTo("head");

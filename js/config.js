@@ -16,6 +16,21 @@ var config = {
 		'type': 'textArea'
 	},
 	
+	'text': {
+		'template': '<div style="top:{{top}}%;left:{{left}}%;" class="pin"><span class="ems-icon-holder circle red"><i class="ems-icon plus3"></i></span> <div class="pin-content ems-inline animated fadeIn"> <div class="pin-content-img"><img src="{{src}}"/></div><div class="pin-content-text"> <h5>{{title}}</h5> <h6>{{smallText}}</h6> <p>{{desc}}</p><a href="{{link}}" class="btn btn-text">{{buttonText}}</a></div></div></div>',
+		'settings': {
+			'title':{ 'title': 'TITLE', 'slug': '{{title}}', 'defaultValue': 'TITLE' },
+			'desc':{ 'title': 'DESCRIPTION', 'slug': '{{desc}}', 'defaultValue': 'DESCRIPTION' },
+			'smallText':{ 'title': 'SMALL TEXT', 'slug': '{{smallText}}', 'defaultValue': 'smalltext' },
+			'link':{ 'title': 'TARGET URL', 'slug': '{{link}}', 'defaultValue': 'javascript:void(0);' },
+			'buttonText':{ 'title': 'BUTTON TEXT', 'slug': '{{buttonText}}', 'defaultValue': 'KEŞFET' },
+			'top':{ 'title': 'TOP', 'slug': '{{top}}', 'defaultValue': 0 },
+			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': 0 }
+		},
+		'resizable': false,
+		'type': 'linkButton'
+	},
+	
 	'link': {
 		'template': '<a href="{{link}}" class="{{class}}" style="top:{{top}}%;left:{{left}}%;"><span>{{buttonText}}</span><i></i></a>',
 		'settings': {
