@@ -61,7 +61,7 @@ var con = $('#appWizard'), scene = $('.scene', con), sceneW = scene.width(), sce
 			generateOutput();
 		}
 		
-		function onResizeStop( event, ui ){
+		function onResizeStop( event, ui ){ 
 			ui = ui || { 'size': { 'width': ID.width(), 'height': ID.height() } };
 			var w = ui.size.width, h = ui.size.height;
 				w = Math.round( w / sceneW * 100 );

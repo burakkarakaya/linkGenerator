@@ -28,7 +28,7 @@ var config = {
 			'left':{ 'title': 'LEFT', 'slug': '{{left}}', 'defaultValue': 0 }
 		},
 		'resizable': false,
-		'type': 'linkButton'
+		'type': 'pinButton'
 	},
 	
 	'link': {
