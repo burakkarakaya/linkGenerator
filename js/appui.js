@@ -54,8 +54,8 @@ var con = $('#appWizard'), scene = $('.scene', con), sceneW = scene.width(), sce
 		function onDragStop( event, ui ){
 			ui = ui || { 'position': { 'left': ID.offset().left, 'top': ID.offset().top } };
 			var x = ui.position.left, y = ui.position.top;
-				x = Math.round( x / sceneW * 100 );
-				y = Math.round( y / sceneH * 100 );
+				x = ( x / sceneW * 100 ).toFixed( 2 );
+				y = ( y / sceneH * 100 ).toFixed( 2 );
 			$('ul.settingList li.top input', ID).val( y );
 			$('ul.settingList li.left input', ID).val( x );
 			generateOutput();
@@ -106,6 +106,7 @@ var con = $('#appWizard'), scene = $('.scene', con), sceneW = scene.width(), sce
 				if( rel != undefined && rel != null && rel != '' )
 					theme = theme.replace( rel, val );	
 			});
+			
 			$('span.theme', ID).html( theme );
 			output = theme;
 			
