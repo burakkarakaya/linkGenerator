@@ -186,3 +186,82 @@ function getImageSize( src, success, err ){
 }
 
 //$('<style type="text/css">@import url("http://sass.proj-e.com/sites/arcelik/style.css")</style>').appendTo("head");
+
+
+
+
+
+///////////////////// PLUGINS
+(function($) {
+    $.fn.extend({
+        minusLinkGenerator: function( options, callback ){
+            var defaults = {};
+            var options = $.extend(defaults, options);
+            return this.each(function() {
+				
+                var o = options, 
+					el = $( this ),
+					scene = el.find('.scene'), 
+					background = el.find('.background'), 
+					menu = el.find('ul.settings li a'), 
+					outputArea = el.find('.output'), 
+					fileUpload = el.find('.fileUpload'),
+					sceneW = scene.width() || 0, 
+					sceneH = scene.height() || 0, 
+					outputObj = {},
+					uty = {
+						trimText: function( k ){	return k.replace(/(^\s+|\s+$)/g,'');	},
+						detectEl: function( ID ){ return ID.length > 0 ? true : false; }
+					},
+					main = {
+						cls: { opened: 'opened' },
+						generateHtml: function(){
+							var _t = this, htm = '';
+							for( var i in _t.outputObj )
+								htm += _t.outputObj[ i ].getOutput();
+							outputArea.val( htm );
+						},
+						addObject: function( o ){
+							var _t = this, id = Math.uuid( 5 );
+							_t.outputObj[ id ] = new AppUI({ id: id, data: o });
+						},
+						removeObject: function( id ){
+							var _t = this;
+							if( _t.outputObj[ id ] != null ){
+								outputObj[ id ] = null;
+								delete outputObj[ id ];
+								_t.generateHtml();
+							}
+						},
+						addEvent: function(){
+							var _t = this;
+							if( uty.detectEl( menu ) )
+								menu.bind('click', function(){
+									var ths = $( this ), rel = ths.attr('rel') || '';
+									if( rel != '' )
+										if( config[ rel ] )
+											_t.addObject( config[ rel ] );
+									
+								});
+							
+							$('body, html').bind('click touchstart', function( e ){
+								var m = $('span.settings', el); 
+								if( !m.is( e.target ) && m.has( e.target ).length === 0 )
+									m.removeClass( _t['cls']['opened'] );
+							});	
+						},
+						init: function(){
+							var _t = this;
+								_t.addEvent();
+							
+						}
+					};
+				
+				main.init();
+				
+            })
+        }
+    })
+})(jQuery, window);
+
+//$('#appWizard').minusLinkGenerator();
